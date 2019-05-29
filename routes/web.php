@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('index', function(){
-	return "Hihi";
+	return view('products');
 });
