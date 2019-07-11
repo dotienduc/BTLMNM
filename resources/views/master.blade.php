@@ -75,6 +75,8 @@
 		<!-- responsive CSS
 		============================================ -->			
         <link rel="stylesheet" href="{{ url('MNM/css/responsive.css') }}">
+
+        @yield('css')
 		
 		<!-- modernizr js
 		============================================ -->		
@@ -197,7 +199,7 @@
 		<!-- main js -->
 		<script src="{{ url('MNM/js/main.js') }}"></script>
 		
-		
+		@yield('javascript')
     </body>
 
 <!-- Tieu Long Lanh -->
