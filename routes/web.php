@@ -23,3 +23,6 @@ Route::get('shop', 'ProductController@displayShop');
 Route::get('shop/{id}', 'ProductController@displayProduct');
 Route::get('cart', 'CartController@displayCart');
 Route::get('pagination', 'ProductController@loadPagination');
+
+Route::get('add-to-cart', 'CartController@addToCart');
+Route::get('del-item', 'CartController@delItem');

@@ -1,5 +1,5 @@
 <!-- header start -->    
-	<header>
+<header>
 	<!-- header-top-area start -->
 	<div class="header-top-area">
 		<div class="container">
@@ -53,39 +53,36 @@
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 					<div class="cat-search">
 						<div class="cart-total">
+							@if(session()->has('cart'))
 							<ul>
-								<li><a href="cart.html"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">2</span></a>
+								<li><a href="cart.html"><span class="cart-icon"><i class="fa fa-shopping-cart"></i></span> <span class="cart-no">{{ Session::get('cart')->totalQty }}</span></a>
 									<div class="mini-cart-content">
+										@foreach(Session::get('cart')->items as $item )
 										<div class="cart-img-details">											
 											<div class="cart-img-photo">
-												<a href="#"><img src="{{ url('MNM/img/product/total-cart.jpg') }}" alt="" /></a>
-												<span class="quantity">1</span>
+												<a href="#"><img src="{{ url('MNM/img/product/'.$item['item']->image.'') }}" alt="" /></a>
+												<span class="quantity">{{ $item['qty'] }}</span>
 											</div>
 											<div class="cart-img-contaent">
-												<a href="#"><h4>Ornare sed consequat</h4></a>
-												<span>£515.00</span>
+												<a href="#"><h4>{{ $item['item']->name }}</h4></a>
+												@if($item['item']->promotion_price == 0)
+												<span>{{ number_format($item['item']->unit_price) }} VND</span>
+												@else
+												<span>{{ number_format($item['item']->promotion_price) }} VND</span>
+												@endif
 											</div>
-											<div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a></div>											
+											<div class="pro-del" id="{{ $item['item']->id }}"><a href="#"><i class="fa fa-times-circle"></i></a></div>											
 										</div>
 										<div class="clear"></div>
-										<div class="cart-img-details">											
-											<div class="cart-img-photo">
-												<a href="#"><img src="{{ url('MNM/img/product/total-cart2.jpg') }}" alt="" /></a>
-												<span class="quantity">1</span>
-											</div>
-											<div class="cart-img-contaent">
-												<a href="#"><h4>Aenean eu tristique</h4></a>
-												<span>£70.00</span>
-											</div>
-											<div class="pro-del"><a href="#"><i class="fa fa-times-circle"></i></a></div>											
-										</div>
-										<p class="total">Tổng tiền: <span class="amount">£585.00</span></p>
+										@endforeach
+										<p class="total">Tổng tiền: <span class="amount">{{ number_format(Session::get('cart')->totalPrice) }} VND</span></p>
 										<div class="clear"></div>
 										<p class="cart-button-top"><a href="checkout.html">Giỏ hàng</a></p>
 										<p class="cart-button-top"><a href="checkout.html">Thanh toán</a></p>
 									</div>
 								</li>
 							</ul>
+							@endif
 						</div>						
 						<div class="header-search">						
 							<div class="top-category">
@@ -187,30 +184,30 @@
 								</li>
 								<li><a href="blog-nosidebar.html">Blog</a>
 									<ul>
-									<li><a href="#">Blog Layouts</a>
-										<ul>
-											<li><a href="blog-nosidebar.html">None Sidebar</a></li>
-											<li><a href="blog-fullwidth.html">Full Width</a></li>
-											<li><a href="blog-left-sidebar.html">Sidebar Left</a></li>
-											<li><a href="blog-right-sidebar.html">Sidebar Right</a></li>
-										</ul>									
-									</li>
-									<li><a href="#">Blog Pages</a>
-										<ul>
-											<li><a href="blog-author.html">Author</a></li>
-											<li><a href="blog-archive.html">Archive</a>	</li>
-											<li><a href="blog-category.html">Category </a></li>
-											<li><a href="blog-tag.html">Blog Tag</a></li>
-										</ul>									
-									</li>
-									<li><a href="#">Post Formats</a>
-										<ul>
-											<li><a href="blog-post-image.html">Image Format</a></li>
-											<li><a href="blog-post-gallery.html">Gallery Format </a></li>
-											<li><a href="blog-post-audio.html">Audio Format </a></li>
-											<li><a href="blog-post-video.html">Video Format</a></li>
-										</ul>									
-									</li>
+										<li><a href="#">Blog Layouts</a>
+											<ul>
+												<li><a href="blog-nosidebar.html">None Sidebar</a></li>
+												<li><a href="blog-fullwidth.html">Full Width</a></li>
+												<li><a href="blog-left-sidebar.html">Sidebar Left</a></li>
+												<li><a href="blog-right-sidebar.html">Sidebar Right</a></li>
+											</ul>									
+										</li>
+										<li><a href="#">Blog Pages</a>
+											<ul>
+												<li><a href="blog-author.html">Author</a></li>
+												<li><a href="blog-archive.html">Archive</a>	</li>
+												<li><a href="blog-category.html">Category </a></li>
+												<li><a href="blog-tag.html">Blog Tag</a></li>
+											</ul>									
+										</li>
+										<li><a href="#">Post Formats</a>
+											<ul>
+												<li><a href="blog-post-image.html">Image Format</a></li>
+												<li><a href="blog-post-gallery.html">Gallery Format </a></li>
+												<li><a href="blog-post-audio.html">Audio Format </a></li>
+												<li><a href="blog-post-video.html">Video Format</a></li>
+											</ul>									
+										</li>
 									</ul>
 								</li>
 								<li><a href="#">Pages</a>
@@ -236,5 +233,5 @@
 		</div>
 	</div>
 	<!-- mainmenu-area end -->
-	</header>
-	<!-- header end --> 
+</header>
+<!-- header end --> 

@@ -210,7 +210,7 @@
 									</a>
 									<a class="modal-view" href="#" data-toggle="modal" data-target="#productModal">Quick View</a>
 									<div class="action-buttons">
-										<a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i> <span>Add to cart</span></a>
+										<a class="add-to-cart" id="{{ $product->id }}" href="#"><i class="fa fa-shopping-cart"></i> <span>Add to cart</span></a>
 										<a class="favourite" href="#"><i class="fa fa-heart-o"></i></a>
 										<a class="compare" href="#"><i class="fa fa-toggle-off"></i></a>
 									</div>
@@ -335,6 +335,34 @@
 	        var itemImg = $(this).parent().parent().find("img").eq(0);
 
 	        flyToElement($(itemImg), $('.fa-shopping-cart'));
+
+	        var id_product = $(this).attr('id');
+
+	        $.ajax({
+	        	url: "{{ url('add-to-cart') }}",
+	        	method: "GET",
+	        	data: {id_product: id_product},
+	        	success:function(data)
+	        	{
+	        		$('.cart-total').html(data);
+	        	}
+	        });
+    	});
+
+    	$(document).on('click', '.pro-del', function(e){
+    		e.preventDefault();
+
+    		var id_product = $(this).attr('id');
+
+    		$.ajax({
+    			url: "{{ url('del-item') }}",
+    			method: "GET",
+    			data:{id_product: id_product},
+    			success:function(data)
+    			{
+    				$('.cart-total').html(data);
+    			}
+    		});
     	});
 	});
 </script>
