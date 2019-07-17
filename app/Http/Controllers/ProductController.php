@@ -17,7 +17,7 @@ class ProductController extends Controller
 
         $totalPage = $this->countPage();
 
-    	return view('shop', ['products' => $products, 'totalPage' => $totalPage]);
+        return view('shop', ['products' => $products, 'totalPage' => $totalPage]);
     }
 
     //Function display detail product
@@ -60,17 +60,19 @@ class ProductController extends Controller
         return $from;
     }
 
-    public function loadPagination($page)
+    public function loadPagination(Request $rq)
     {
-        $productPerPage = 9;
+        if ($rq->isMethod('get')){  
+            $productPerPage = 9;
 
-        $from = $this->pagination($page);
+            $from = $this->pagination($rq->page);
 
-        $products = Product::where('new', '1')
-                            ->offset($from)
-                            ->limit($productPerPage)
-                            ->get();
+            $products = Product::where('new', '1')
+            ->offset($from)
+            ->limit($productPerPage)
+            ->get();
 
-        return view('dataAjax.productPerPage', ['products' => $products]);
+            return view('dataAjax.productPerPage', ['products' => $products]);  
+        }
     }
 }

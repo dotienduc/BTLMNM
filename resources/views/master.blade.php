@@ -159,7 +159,7 @@
 		<!-- JS -->
 		
 		<!-- jquery js -->
-		<script src="{{ url('MNM/js/vendor/jquery-1.11.2.min.js') }}"></script>
+		<script src="{{ url('MNM/js/vendor/jquery-3.4.1.min.js') }}"></script>
 		
 		<!-- bootstrap js -->
 		<script src="{{ url('MNM/js/bootstrap.min.js') }}"></script>

@@ -22,4 +22,4 @@ Route::get('index', 'HomeController@displayHome');
 Route::get('shop', 'ProductController@displayShop');
 Route::get('shop/{id}', 'ProductController@displayProduct');
 Route::get('cart', 'CartController@displayCart');
-Route::get('shop/page', 'ProductController@loadPagination')->name('page');
+Route::get('pagination', 'ProductController@loadPagination');
